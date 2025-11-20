@@ -1,0 +1,27 @@
+POST http://127.0.0.1:8000/api/query/
+Content-Type: application/json
+
+{
+  "query": "Wakad"
+}
+
+POST http://127.0.0.1:8000/api/query/
+Content-Type: application/json
+
+{
+  "query": "Akurdi"
+}
+
+POST http://127.0.0.1:8000/api/query/
+Content-Type: application/json
+
+{
+  "query": "Ambegaon Budruk"
+}
+
+POST http://127.0.0.1:8000/api/query/
+Content-Type: application/json
+
+{
+  "query": "Aundh"
+}

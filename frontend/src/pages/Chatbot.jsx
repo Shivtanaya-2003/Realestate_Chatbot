@@ -16,6 +16,9 @@ export default function Chatbot() {
   const [showPriceGrowth, setShowPriceGrowth] = useState(false);
 const [selectedAreas, setSelectedAreas] = useState([]);
 const [selectedAreaForGrowth, setSelectedAreaForGrowth] = useState("");
+const [showFullInfo, setShowFullInfo] = useState(false);
+const [selectedAreaForInfo, setSelectedAreaForInfo] = useState("");
+
 
   // Known areas list (extend from your Excel or load dynamically later)
   const knownAreas = [
@@ -121,7 +124,7 @@ const analyzeArea = async (areaText) => {
     const res = await fetch("http://127.0.0.1:8000/api/query/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query: areaText }),
+      body: JSON.stringify({ query: areaText}),
     });
     const data = await res.json();
 
@@ -139,12 +142,15 @@ const analyzeArea = async (areaText) => {
   {
     sender: "bot",
     component: (
-      <button
-        className="btn btn-success btn-sm mt-2"
-        onClick={() => setShowFullReport(true)}
-      >
-        View Full Comparison
-      </button>
+     <button
+  className="btn btn-success btn-sm mt-2"
+  onClick={() => {
+    navigate(`/full-report?area=${encodeURIComponent(areaText)}`);
+  }}
+>
+  View Full Information
+</button>
+
     ),
   },
 ]);
@@ -160,23 +166,24 @@ const analyzeArea = async (areaText) => {
 
   // compare areas: calls backend compare API and shows short summary + View Full Comparison button
   const compareAreas = (areas) => {
+    setSelectedAreas(areas);
   const summary = `I have analyzed ${areas.join(" and ")}.`;
 
   setMessages((prev) => [
-    ...prev,
-    { sender: "bot", text: summary },
-    {
-  sender: "bot",
-  component: (
-    <button
-      className="btn btn-success btn-sm mt-2"
-      onClick={() => setShowComparison(true)}
-    >
-      View Full Comparison
-    </button>
-  ),
-},
-  ]);
+  ...prev,
+  { sender: "bot", text: summary },
+  {
+    sender: "bot",
+    component: (
+      <button
+        className="btn btn-success btn-sm mt-2"
+        onClick={() => setShowComparison(true)}
+      >
+        View Comparison
+      </button>
+    ),
+  },
+]);
 };
 
 

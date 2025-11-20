@@ -141,7 +141,7 @@ const analyzeArea = async (areaText) => {
     component: (
       <button
         className="btn btn-success btn-sm mt-2"
-        onClick={() => setShowComparison(true)}
+        onClick={() => setShowFullReport(true)}
       >
         View Full Comparison
       </button>

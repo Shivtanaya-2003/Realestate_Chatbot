@@ -4,14 +4,16 @@ from pathlib import Path
 import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+ 
+#  SECRET_KEY = 'django-insecure-9q)7r6zyuj56_q#7wamtl0*angnda01+1z0q-!%ov4hk0!1e9h'
 
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "fallback-secret-key")
 
 DEBUG = False
 
-ALLOWED_HOSTS = ["realestate-backend.onrender.com",
-    "your-frontend.netlify.app",]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -36,9 +38,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOW_ALL_ORIGINS = [
-    "https://your-frontend.netlify.app",
-]
+CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'realestate.urls'
 
